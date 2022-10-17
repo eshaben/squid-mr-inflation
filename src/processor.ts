@@ -18,7 +18,7 @@ const processor = new SubstrateBatchProcessor()
   })
   .addEvent("ParachainStaking.Rewarded")
 
-processor.setBlockRange({ from: 450302 });
+processor.setBlockRange({ from: 0 });
 
 processor.run(new TypeormDatabase(), async (ctx) => {
   const rewards = await getRewards(ctx);
