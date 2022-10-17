@@ -14,12 +14,11 @@ import {
 const processor = new SubstrateBatchProcessor()
   .setBatchSize(500)
   .setDataSource({
-    archive: lookupArchive("moonbeam", { release: "FireSquid" }),
+    archive: lookupArchive("moonriver", { release: "FireSquid" }),
   })
   .addEvent("ParachainStaking.Rewarded")
-  .addEvent("ParachainStaking.DelegatorDueReward")
 
-processor.setBlockRange({ from: 171060, to: 1557181 });
+processor.setBlockRange({ from: 450302 });
 
 processor.run(new TypeormDatabase(), async (ctx) => {
   const rewards = await getRewards(ctx);
@@ -39,9 +38,9 @@ async function getRewards(ctx: Ctx): Promise<Reward[]> {
         let balance;
         let account: string;
 
-        if (event.isV900){
-          account = toHex(event.asV900[0]);
-          balance = event.asV900[1];
+        if (event.isV49){
+          account = toHex(event.asV49[0]);
+          balance = event.asV49[1];
         } else {
           account = toHex(event.asV1300.account);
           balance = event.asV1300.rewards;
@@ -54,17 +53,16 @@ async function getRewards(ctx: Ctx): Promise<Reward[]> {
         if (index.length == 1) {
           index = `00${index}`;
         } else if (index.length == 2) {
-          index = `0${index}`
+          index = `0${index}`;
         }
         
-        reward.id = `${parseInt(blockNo, 10)}-${index}`
+        reward.id = `${parseInt(blockNo, 10)}-${index}`;
         reward.account = account;
         reward.balance = balance;
         reward.timestamp = BigInt(block.header.timestamp);
-        reward.dateMonth = (new Date(block.header.timestamp).getUTCMonth() + 1).toString() + "/" + new Date(block.header.timestamp).getUTCDate().toString();
 
         rewards.push(reward);
-      }
+      }     
     }
   }
   return rewards;

@@ -1,43 +1,3 @@
-
-# type CollatorReward @entity {
-
-#   id: ID!
-
-#   balance: BigInt!
-
-#   inflation: BigInt!
-
-#   timestamp: String!
-
-#   month: Int!
-
-#   dateMonth: String!
-
-#   collator: Boolean!
-
-#   account: String!
-
-# }
-
-# type DelegatorReward @entity {
-
-#   id: ID!
-
-#   balance: BigInt!
-
-#   inflation: BigInt!
-
-#   timestamp: String!
-
-#   month: Int!
-
-#   dateMonth: String!
-
-#   account: String!
-
-# }
-
-
 type Reward @entity {
 
   id: ID!
@@ -45,8 +5,6 @@ type Reward @entity {
   balance: BigInt!
 
   timestamp: BigInt!
-
-  dateMonth: String!
 
   account: String!
 

@@ -17,8 +17,5 @@ export class Reward {
   timestamp!: bigint
 
   @Column_("text", {nullable: false})
-  dateMonth!: string
-
-  @Column_("text", {nullable: false})
   account!: string
 }

@@ -1,10 +1,9 @@
 {
   "outDir": "src/types",
-  "specVersions": "https://moonbeam.archive.subsquid.io/graphql",
+  "specVersions": "https://moonriver.archive.subsquid.io/graphql",
   "typesBundle": "moonbeam",
   "events": [
-    "ParachainStaking.Rewarded",
-    "ParachainStaking.DelegatorDueReward"
+    "ParachainStaking.Rewarded"
   ],
   "calls": []
 }
